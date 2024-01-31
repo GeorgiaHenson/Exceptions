@@ -22,26 +22,28 @@ public class FormatChecker {
         }
 
         int rowCounter = 0;
-
-        
+        int colCounter = 0;
 
         while (fileScan.hasNextLine()) {
+            colCounter = 0;
             String line = fileScan.nextLine();
-            Scanner lineScan = new Scanner(line);
-            rowCounter++;
-            int colCounter = 0;
-            while (lineScan.hasNext()) {
-                colCounter++;
-                double tester = Double.parseDouble(lineScan.next());
-            }
-            lineScan.close();
-            if (colCounter < cols) {
+            if (line.length() > 0) {
+                Scanner lineScan = new Scanner(line);
+                rowCounter++;
+                while (lineScan.hasNext()) {
+                    double tester = Double.parseDouble(lineScan.next());
+                    colCounter++;
 
-                throw new IncorrectColumnCountException("Not enough columns in file");
-            } else if (colCounter > cols) {
-                throw new IncorrectColumnCountException("Too many columns in file");
-            }
+                }
+                lineScan.close();
 
+                if (colCounter < cols) {
+                    throw new IncorrectColumnCountException("Not enough columns in file");
+                } else if (colCounter > cols) {
+
+                    throw new IncorrectColumnCountException("Too many columns in file");
+                }
+            }
         }
         if (rowCounter < rows) {
             throw new IncorrectRowCountException("Not enough rows in file");
