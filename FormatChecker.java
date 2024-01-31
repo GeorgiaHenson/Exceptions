@@ -2,7 +2,23 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * The FormatChecker class takes a filename and tests for proper formatting of the file
+ * 
+ * @author Georgia Henson
+ * @version 1.0 CS221 Spring 2024
+ */
+
 public class FormatChecker {
+
+    /**
+     * Constructor for FormatChecker
+     * @param fileName is the name of the file being tested in FormatChecker
+     * @throws FileNotFoundException
+     * @throws IncorrectRowCountException
+     * @throws IncorrectColumnCountException
+     * @throws IncorrectFirstLineException
+     */
 
     public FormatChecker(String fileName)
             throws FileNotFoundException, IncorrectRowCountException, IncorrectColumnCountException,
@@ -53,6 +69,10 @@ public class FormatChecker {
 
     }
 
+    /**
+     * main method validates command lines and runs the FormatChecker class
+     * @param args
+     */
     public static void main(String[] args) {
         if (args.length > 0) {
             for (var x : args) {
@@ -86,7 +106,7 @@ public class FormatChecker {
 
         } else {
             System.out.println(
-                    "Usage:$ java FormatChecker file1 [file2 ... fileN]\n where the names of one or more input files are given.");
+                    "Usage:$  java FormatChecker <filename1> [filename2 .. filenameN]");
             return;
         }
 
